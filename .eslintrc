@@ -1,0 +1,83 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "import-newlines"],
+  "extends": ["airbnb-typescript"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/jsx-one-expression-per-line": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
+    "comma-dangle": ["error", "always-multiline"],
+    "implicit-arrow-linebreak": "off",
+    "no-param-reassign": "off",
+    "arrow-parens": "off",
+    "arrow-body-style": "off",
+    "object-curly-newline": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/member-delimiter-style": "error",
+    "@typescript-eslint/type-annotation-spacing": "error",
+    "prefer-destructuring": "off",
+    "max-len": ["error", { "code": 110, "ignoreTemplateLiterals": true, "ignoreStrings": true }],
+    "no-under": "off",
+    "no-shadow": "off",
+    "no-redeclare": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "groups": ["external", "index"]
+      }
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "ignoredNodes": ["ConditionalExpression", "CallExpression", "ObjectExpression", "MemberExpression"]
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": ["block-like", "function", "const", "let"]
+      },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let"],
+        "next": ["const", "let"]
+      }
+    ],
+    "linebreak-style": "off",
+    "import-newlines/enforce": [
+      "error",
+      {
+        "items": 3,
+        "max-len": 110,
+        "semi": true
+      }
+    ]
+  }
+}
