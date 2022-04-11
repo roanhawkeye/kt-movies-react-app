@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack --config webpack.prod.js",
     "lint": "prettier src && eslint src",
     "just-lint": "eslint src",
@@ -34,12 +34,16 @@
     "styled-component": "^2.8.0"
   },
   "devDependencies": {
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.23",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
     "clean-webpack-plugin": "^4.0.0",
     "dotenv": "^16.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.2",
     "eslint": "^8.12.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
