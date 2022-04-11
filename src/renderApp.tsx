@@ -7,7 +7,7 @@ export const renderApp = () => {
   const App: FC = () => (
     <div>
       <h1>Hello App</h1>
-      <Card />
+      <Card name="Pulp Fiction" year="2004" categories="Action" imageURL="Image Here" />
     </div>
   );
 
