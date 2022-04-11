@@ -10,10 +10,20 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding-bottom: 7px;
 `;
 
 export const ImageContainer = styled.div`
   height: 70%;
+`;
+
+export const Poster = styled.img`
+  height: 250px;
+  width: 220px;
 `;
 
 export const MovieDataContainer = styled.div`
@@ -59,7 +69,7 @@ export const MovieCategories = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 15px;
   /* identical to box height */
 
   color: #ffffff;

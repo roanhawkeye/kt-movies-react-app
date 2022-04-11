@@ -10,6 +10,7 @@ import {
   MovieName,
   MovieYear,
   MovieCategories,
+  Poster,
 } from './Card.styled';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
@@ -24,7 +25,9 @@ interface MovieData {
 const Card: FC<MovieData> = (props: MovieData) => {
   return (
     <CardContainer>
-      <ImageContainer>{props.imageURL}</ImageContainer>
+      <ImageContainer>
+        <Poster src={props.imageURL} />
+      </ImageContainer>
       <MovieDataContainer>
         <MovieName>{props.name}</MovieName>
         <MovieYear>{props.year}</MovieYear>
