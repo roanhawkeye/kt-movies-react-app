@@ -9,6 +9,12 @@
     "build": "webpack --config webpack.prod.js",
     "lint": "prettier src && eslint src"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint src",
+      "pre-push": "npm run test"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/roanhawkeye/kt-movies-react-app.git"
