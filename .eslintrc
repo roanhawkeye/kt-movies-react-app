@@ -25,7 +25,8 @@
     "react/jsx-props-no-spreading": "off",
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
-    "import/no-default-export": "error",
+    "import/no-default-export": "off",
+    "import/extensions": "off",
     "comma-dangle": ["error", "always-multiline"],
     "implicit-arrow-linebreak": "off",
     "no-param-reassign": "off",
@@ -43,7 +44,7 @@
     "no-redeclare": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "import/order": [
-      "error",
+      "off",
       {
         "newlines-between": "always",
         "groups": ["external", "index"]
