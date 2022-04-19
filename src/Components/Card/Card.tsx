@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import Enzyme from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
@@ -12,6 +12,7 @@ import {
   MovieCategories,
   Poster,
 } from './Card.styled';
+import { HamburgerMenu } from '../HamburguerMenu/HamburguerMenu.styled';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
@@ -23,8 +24,11 @@ interface MovieData {
 }
 
 const Card: FC<MovieData> = (props: MovieData) => {
+  const [isHovering, setIsHovering] = useState(false);
+
   return (
-    <CardContainer>
+    <CardContainer onMouseOver={() => setIsHovering(true)} onMouseOut={() => setIsHovering(false)}>
+      {isHovering && <HamburgerMenu>...</HamburgerMenu>}
       <ImageContainer>
         <Poster src={props.imageURL} />
       </ImageContainer>

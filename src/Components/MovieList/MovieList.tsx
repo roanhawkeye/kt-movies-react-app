@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-import Card from './Card';
+import Card from '../Card/Card';
 
-import { MovieListContainer } from './MovieList.styled';
+import { MovieListContainer, MovieCounter } from './MovieList.styled';
 
 interface Movie {
   title: string;
@@ -28,7 +28,12 @@ const MovieList = () => {
     getMovies();
   }, []);
 
-  return <MovieListContainer>{renderedMovies}</MovieListContainer>;
+  return (
+    <React.Fragment>
+      <MovieCounter> {movies.length} movies Found</MovieCounter>
+      <MovieListContainer>{renderedMovies}</MovieListContainer>
+    </React.Fragment>
+  );
 };
 
 export default MovieList;
