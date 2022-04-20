@@ -38,7 +38,7 @@
     "@typescript-eslint/member-delimiter-style": "error",
     "@typescript-eslint/type-annotation-spacing": "error",
     "prefer-destructuring": "off",
-    "max-len": ["error", { "code": 110, "ignoreTemplateLiterals": true, "ignoreStrings": true }],
+    "max-len": ["error", { "code": 120, "ignoreTemplateLiterals": true, "ignoreStrings": true }],
     "no-under": "off",
     "no-shadow": "off",
     "no-redeclare": "off",
