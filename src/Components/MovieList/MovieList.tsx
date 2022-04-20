@@ -15,7 +15,7 @@ const MovieList = () => {
   const [movies, setMovies] = useState([]);
 
   const renderedMovies = movies.map((movie: Movie) => (
-    <Card name={movie.title} year="2004" categories="Action" imageURL={movie.poster_path} />
+    <Card key={movie.title} name={movie.title} year="2004" categories="Action" imageURL={movie.poster_path} />
   ));
 
   useEffect(() => {
@@ -29,10 +29,10 @@ const MovieList = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <MovieCounter> {movies.length} movies Found</MovieCounter>
       <MovieListContainer>{renderedMovies}</MovieListContainer>
-    </React.Fragment>
+    </>
   );
 };
 

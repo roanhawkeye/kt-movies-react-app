@@ -76,7 +76,7 @@
       "error",
       {
         "items": 3,
-        "max-len": 110,
+        "max-len": 120,
         "semi": true
       }
     ]

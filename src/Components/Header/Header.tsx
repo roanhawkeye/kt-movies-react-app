@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '../Box/Box';
 import { CustomButton } from '../Button/Button.styled';
 
 import {
@@ -15,7 +16,7 @@ import {
 
 const Header = () => {
   return (
-    <React.Fragment>
+    <>
       <HeaderContainer imageBackgroundUrl="/public/images/header_background_1.jpeg">
         <TopLeftTitle>netflixroulette</TopLeftTitle>
         <TopRightButton right="6" top="6">
@@ -28,7 +29,7 @@ const Header = () => {
         </CustomButton>
       </HeaderContainer>
       <SubHeader>
-        <div>
+        <Box>
           <Navigation>
             <NavigationOption>ALL</NavigationOption>
             <NavigationOption>DOCMENTARY</NavigationOption>
@@ -36,18 +37,18 @@ const Header = () => {
             <NavigationOption>HORROR</NavigationOption>
             <NavigationOption>CRIME</NavigationOption>
           </Navigation>
-        </div>
-        <div>
+        </Box>
+        <Box>
           <DropdownLabel htmlFor="sorting">SORT BY </DropdownLabel>
-          <select name="sorting" id="sorting">
+          <select name="sorting">
             <option value="release">RELEASE DATE</option>
             <option value="saab">Saab</option>
             <option value="mercedes">Mercedes</option>
             <option value="audi">Audi</option>
           </select>
-        </div>
+        </Box>
       </SubHeader>
-    </React.Fragment>
+    </>
   );
 };
 

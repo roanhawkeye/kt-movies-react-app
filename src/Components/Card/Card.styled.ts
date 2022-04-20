@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { InjectedBoxProps } from '../../theme/mixin/box/box';
+import { SC } from '../../theme/styled-component';
 
-export const CardContainer = styled.div`
+export const CardContainer: SC<InjectedBoxProps> = styled.div`
   font-family: Montserrat;
 
   height: 300px;

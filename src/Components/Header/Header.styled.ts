@@ -1,4 +1,7 @@
+import { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
+import { InjectedBoxProps } from '../../theme/mixin/box/box';
+import { SC } from '../../theme/styled-component';
 
 interface HeaderContainterProps {
   imageBackgroundUrl: string;
@@ -55,12 +58,14 @@ export const Title = styled.div`
   color: #ffffff;
 `;
 
+type ButtonBoxProps = InjectedBoxProps<ButtonHTMLAttributes<any>>;
+
 interface TopRighButtonProps {
   right: string;
   top: string;
 }
 
-export const TopRightButton = styled.div<TopRighButtonProps>`
+export const TopRightButton: SC<ButtonBoxProps> = styled.div<TopRighButtonProps>`
   position: fixed;
   right: ${(props) => props.right}%;
   top: ${(props) => props.top}%;
