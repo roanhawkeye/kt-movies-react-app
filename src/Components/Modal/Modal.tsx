@@ -1,10 +1,15 @@
-import React, { FC, forwardRef, ReactNode, Ref } from 'react';
+import React, { 
+  FC, 
+  forwardRef, 
+  ReactNode, 
+  Ref, 
+} from 'react';
 
 import { 
   ModalOverlay, 
   ModalPopup, 
   ModalContent, 
-  ModalBody 
+  ModalBody, 
 } from './Modal.styled';
 
 import ReactDOM from 'react-dom';
