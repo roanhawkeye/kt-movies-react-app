@@ -6,7 +6,7 @@ import {
   InjectedBoxProps, 
   boxSystem, 
   fadeInFadeOutAnimation, 
-  popupInOutAnimation 
+  popupInOutAnimation, 
 } from '../../theme/mixin';
 
 export const Overlay: SC = styled.div`
