@@ -15,7 +15,10 @@ export const useAnimationOnMountUnmount = (show: boolean): UseAnimationOnMountUn
   }, [show]);
 
   const onAnimationEnd = () => {
-    if (!show) setRender(false);
+    if (!show) {
+      setRender(false);
+    } 
+      
   };
 
   return { shouldRender, onAnimationEnd };
