@@ -34,11 +34,11 @@ export const Modal: FC<ModalProps> = forwardRef(({ show, children, onClose, ...b
 
   return ReactDOM.createPortal(
     <>
-      <ModalOverlay data-automation-name="modalOverlay" show={show} onClick={onClose} onAnimationEnd={onAnimationEnd} />
-      <ModalPopup data-automation-name="modalPopup" show={show}>
-        <ModalContent data-automation-name="modalContent">
-          <CloseButton data-automation-name="modalCloseButton" onClick={onClose} fixed />
-          <ModalBody data-automation-name="modalBody" {...boxProps} ref={ref}>
+      <ModalOverlay  show={show} onClick={onClose} onAnimationEnd={onAnimationEnd} />
+      <ModalPopup  show={show}>
+        <ModalContent >
+          <CloseButton  onClick={onClose} fixed />
+          <ModalBody  {...boxProps} ref={ref}>
             {children}
           </ModalBody>
         </ModalContent>
