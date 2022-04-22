@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlPlugin = require('html-webpack-Plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const { loadavg } = require('os');
 
 const dotenv = require('dotenv').config({ path: '.env.LOCAL' });
@@ -33,6 +35,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(svg|png|gif|jpeg)$/,
+        use: 'file-loader',
+      },
     ],
   },
 
@@ -41,6 +47,7 @@ module.exports = {
     new HtmlPlugin({
       template: path.resolve(__dirname, 'index.template.html'),
     }),
+    new CopyWebpackPlugin({ patterns: [{ from: path.resolve(__dirname, 'public'), to: 'public' }] }),
   ],
 
   devtool: 'inline-source-map',
