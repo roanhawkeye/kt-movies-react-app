@@ -22,7 +22,7 @@ export const MovieForm: FC<MovieFormProps> = ({ onSubmit, onReset }) => {
 
   const handleSubmit = (event: FormEvent) => {
       event.preventDefault();
-
+      
       if (onSubmit) {
           onSubmit(event);
       }
@@ -35,7 +35,7 @@ export const MovieForm: FC<MovieFormProps> = ({ onSubmit, onReset }) => {
   };
 
   return (
-    <FormStyled>
+    <FormStyled onSubmit={handleSubmit}>
       <FormLine>
         <Group>
           <FormLabel>Title</FormLabel>
@@ -74,7 +74,7 @@ export const MovieForm: FC<MovieFormProps> = ({ onSubmit, onReset }) => {
       </FormLine>
       <ButtonLine>
         <ResetButton onClick={handleReset} >Reset </ResetButton>
-        <SubmitButton onSubmit={handleSubmit}>Submit</SubmitButton>
+        <SubmitButton type='submit' >Submit</SubmitButton>
       </ButtonLine>
     </FormStyled>
   );

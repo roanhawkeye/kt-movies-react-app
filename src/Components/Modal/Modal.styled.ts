@@ -46,6 +46,7 @@ export const ModalPopup = styled.section<ModalPopupProps>`
   z-index: 10003;
   color: white;
   margin-left: 8%;
+  margin-top: 8%;
 
   ${popupInOutAnimation()};
   ${boxSystem}
@@ -66,7 +67,7 @@ export const ModalBody: SC = styled.div`
   overflow-y: scroll;
   margin-top: 20px;
   width: 100%;
-  
+
 
   ${boxSystem}
 `;
