@@ -1,7 +1,8 @@
 import React, { FC, useCallback, useState } from 'react';
-import { Box } from '../Box/Box';
+import { AddMovieHeader } from './AddMoviesPopup.styled';
 import { TopRightButton } from '../Header/Header.styled';
 import { Modal } from '../Modal/Modal';
+import { MovieForm } from '../Form/MovieForm';
 
 export const AddMoviesPopup: FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -16,7 +17,8 @@ export const AddMoviesPopup: FC = () => {
         + add movie
       </TopRightButton>
       <Modal show={modalOpen} onClose={closeModal}>
-        <Box>Hello Modal!!!!</Box>
+        <AddMovieHeader>ADD MOVIE</AddMovieHeader>
+        <MovieForm />
       </Modal>
     </>
   );

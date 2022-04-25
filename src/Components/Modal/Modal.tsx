@@ -9,7 +9,7 @@ import {
   ModalOverlay, 
   ModalPopup, 
   ModalContent, 
-  ModalBody, 
+  ModalBody,
 } from './Modal.styled';
 
 import ReactDOM from 'react-dom';
