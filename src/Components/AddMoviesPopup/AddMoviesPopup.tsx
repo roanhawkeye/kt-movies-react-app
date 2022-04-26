@@ -5,22 +5,25 @@ import React, {
   useState,
 } from 'react';
 import { AddMovieHeader, SuccessMessage, SuccessMessageTitle } from './AddMoviesPopup.styled';
-import { TopRightButton } from '../Header/Header.styled';
 import { Modal } from '../Modal/Modal';
 import { MovieForm } from '../Form/MovieForm';
 
-export const AddMoviesPopup: FC = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+interface AddMoviewPopupProps {
+  show: boolean;
+  setShow: (value: boolean) => void;
+}
+
+export const AddMoviesPopup: FC<AddMoviewPopupProps> = ({ show, setShow }) => {
   const [successModal, setSuccessModal] = useState(false);
 
   const closeModal = useCallback(()=> {
-    setModalOpen(false);
-  }, [modalOpen]);
+    setShow(false);
+  }, [show]);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    setModalOpen(false);
+    setShow(false);
     setSuccessModal(true);
   };
 
@@ -30,10 +33,7 @@ export const AddMoviesPopup: FC = () => {
 
   return (
     <>
-      <TopRightButton right="6" top="6" onClick={() => setModalOpen(true)}>
-        + add movie
-      </TopRightButton>
-      <Modal show={modalOpen} onClose={closeModal}>
+      <Modal show={show} onClose={closeModal}>
         <AddMovieHeader>ADD MOVIE</AddMovieHeader>
         <MovieForm onSubmit={handleSubmit}/>
       </Modal>

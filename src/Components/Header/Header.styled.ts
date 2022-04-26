@@ -131,7 +131,7 @@ export const NavigationOption = styled.li`
   padding: 10px 20px;
 
   &:hover {
-    background-color: #2779bf;
+    background-color: #f65261;
   }
 `;
 
