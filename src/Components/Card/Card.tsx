@@ -12,7 +12,7 @@ import {
   MovieCategories,
   Poster,
 } from './Card.styled';
-import { HamburgerMenu } from '../HamburguerMenu/HamburguerMenu.styled';
+import { HamburgerMenu } from '../HamburgerMenu/HamburgerMenu';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
@@ -28,7 +28,7 @@ const Card: FC<MovieData> = (props: MovieData) => {
 
   return (
     <CardContainer onMouseOver={() => setIsHovering(true)} onMouseOut={() => setIsHovering(false)}>
-      {isHovering && <HamburgerMenu>...</HamburgerMenu>}
+      <HamburgerMenu show={isHovering} />
       <ImageContainer>
         <Poster src={props.imageURL} />
       </ImageContainer>

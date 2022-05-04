@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 interface CustomButtonProps {
-  left: string;
-  width: string;
-  color: string;
-  top: string;
+  left?: string;
+  width?: string;
+  color?: string;
+  top?: string;
 }
 
 export const CustomButton = styled.button<CustomButtonProps>`

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { InjectedBoxProps } from '../../theme/mixin/box/box';
 import { SC } from '../../theme/styled-component';
 
+import { boxSystem } from '../../theme/mixin';
+
 interface HeaderContainterProps {
   imageBackgroundUrl: string;
 }
@@ -129,7 +131,7 @@ export const NavigationOption = styled.li`
   padding: 10px 20px;
 
   &:hover {
-    background-color: #2779bf;
+    background-color: #f65261;
   }
 `;
 
@@ -149,4 +151,12 @@ export const DropdownLabel = styled.label`
 
   mix-blend-mode: normal;
   opacity: 0.6;
+`;
+
+export const SelectBox = styled.select`
+  ${boxSystem}
+`;
+
+export const OptionBox = styled.option`
+  ${boxSystem}
 `;

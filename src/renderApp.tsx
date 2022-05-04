@@ -5,7 +5,7 @@ import MovieList from './Components/MovieList/MovieList';
 import Header from './Components/Header/Header';
 
 import styled from 'styled-components';
-import { FooterContent } from './Components/Footer/Footer.styled';
+import { Footer } from './Components/Footer/Footer';
 
 const AppContainer = styled.div`
   background-color: #424242; ;
@@ -16,7 +16,7 @@ export const renderApp = () => {
     <AppContainer>
       <Header />
       <MovieList />
-      <FooterContent>netflixroulette</FooterContent>
+      <Footer>netflixroulette</Footer>
     </AppContainer>
   );
 
