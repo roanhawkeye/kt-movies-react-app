@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-
-import axios from 'axios';
+/* eslint-disable */
+import React, { FC, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getMovies } from '../../actions';
+import { StateProps } from '../../reducers';
 
 import Card from '../Card/Card';
 
@@ -11,29 +13,30 @@ interface Movie {
   poster_path: string;
 }
 
-const MovieList = () => {
-  const [movies, setMovies] = useState([]);
+interface MovieListProps {
+  getMovies: () => void;
+  movies: [];
+}
 
-  const renderedMovies = movies.map((movie: Movie) => (
-    <Card key={movie.title} name={movie.title} year="2004" categories="Action" imageURL={movie.poster_path} />
-  ));
+const MovieList: FC<MovieListProps> = ({ getMovies, movies }) => {
 
   useEffect(() => {
-    const getMovies = async () => {
-      const { data } = await axios.get('http://localhost:4000/movies');
-
-      setMovies(data.data);
-    };
-
     getMovies();
   }, []);
 
   return (
     <>
+      {console.log(movies)}
       <MovieCounter> {movies.length} movies Found</MovieCounter>
-      <MovieListContainer>{renderedMovies}</MovieListContainer>
+      <MovieListContainer>{ movies.map((movie: Movie) => (
+        <Card key={movie.title} name={movie.title} year="2004" categories="Action" imageURL={movie.poster_path} />
+      ))}</MovieListContainer>
     </>
   );
 };
 
-export default MovieList;
+const mapStateToProps = (state: StateProps) => {
+  return { movies: state.movies };
+};
+
+export default connect(mapStateToProps, { getMovies })(MovieList);
