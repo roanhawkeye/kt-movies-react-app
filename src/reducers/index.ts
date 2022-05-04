@@ -5,6 +5,6 @@ export interface StateProps {
     movies: [];
 }
 
-export default combineReducers({
+export const rootReducer =  combineReducers({
     movies: moviesReducer,
 });
