@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import movieService from '../services/movieService';
+import { services } from '../services';
 
 export interface Action {
     type: string;
@@ -8,7 +8,7 @@ export interface Action {
 
 export const getMovies = () => {
   return async (dispatch: Dispatch) => {
-    const response = await movieService.get('/movies');
-        dispatch({ type: 'GET_MOVIES', payload : response.data.data });
+    const response = await services.movie.getMovies();
+        dispatch({ type: 'GET_MOVIES', payload : response });
   }; 
 };
