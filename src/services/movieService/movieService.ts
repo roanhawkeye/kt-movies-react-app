@@ -6,7 +6,10 @@ export function createMovieService(http: HttpService) {
   const getMovies = async () => {
     const { data } = await http.get<MoviesResponse>('/movies');
 
-    return data.data;
+    return {
+      movies: data.data,
+      total: data.total,
+    };
   };
 
   const getMovie = async (movieId: MovieId) => {

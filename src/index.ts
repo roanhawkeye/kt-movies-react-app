@@ -1,3 +1,6 @@
 import { renderApp } from './renderApp';
+import { createStore } from './store';
 
-renderApp();
+const store = createStore();
+
+renderApp(store);

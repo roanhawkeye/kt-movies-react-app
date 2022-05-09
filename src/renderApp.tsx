@@ -1,7 +1,7 @@
+import { Store } from 'StoreTypes';
 import React, { FC } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './store/createStore';
 
 import MovieList from './Components/MovieList/MovieList';
 import Header from './Components/Header/Header';
@@ -9,11 +9,12 @@ import Header from './Components/Header/Header';
 import styled from 'styled-components';
 import { Footer } from './Components/Footer/Footer';
 
+
 const AppContainer = styled.div`
   background-color: #424242;
 `;
 
-export const renderApp = () => {
+export const renderApp = (store: Store) => {
   const App: FC = () => (
     <Provider store={store} >
       <AppContainer>

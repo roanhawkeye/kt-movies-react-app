@@ -1,11 +1,33 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from '../reducers';
+/* eslint-disable */
+import { ThunkExtraArgument } from 'StoreTypes';
+import { configureStore, Middleware, Reducer } from '@reduxjs/toolkit';
 
-export const store = configureStore({
-    reducer: rootReducer,
-});
+import { services } from '../services';
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+const configureDefaultMiddleware = (getDefaultMiddleware: Function) => {
+  return getDefaultMiddleware({
+        thunk: {
+            extraArgument: {
+                services,
+            } as ThunkExtraArgument,
+        },
+        serializableCheck: false,
+    });
+};
+
+const createStore = <S>(
+  rootReducer: Reducer,
+  customMiddleware: Middleware[],
+) => {
+  const config = {
+        reducer: rootReducer,
+        middleware: (getDefaultMiddleware: Function) => {
+          return [...configureDefaultMiddleware(getDefaultMiddleware), ...customMiddleware];
+        },
+        devTools: true,
+    };
+
+  return configureStore(config);
+};
+
+export { createStore };
