@@ -34,7 +34,7 @@ const Card: FC<MovieData> = (props: MovieData) => {
       </ImageContainer>
       <MovieDataContainer>
         <MovieName>{props.name}</MovieName>
-        <MovieYear>{props.year}</MovieYear>
+        <MovieYear>{props.year.substring(0, 4)}</MovieYear>
       </MovieDataContainer>
       <MovieCategories>{props.categories}</MovieCategories>
     </CardContainer>
