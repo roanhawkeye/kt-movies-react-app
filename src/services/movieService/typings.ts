@@ -1,4 +1,12 @@
-import { Movie } from '../../domain';
+import { Movie, MovieBase, MovieId } from '../../domain';
+
+export interface MovieService {
+    getMovies(): Promise<Movie[]>;
+    getMovie( movieId: MovieId ): Promise<Movie>;
+    saveMovie( payload: MovieBase ): Promise<Movie>;
+    editMovie( payload: Movie ): Promise<Movie>;
+    deleteMovie( movieId: MovieId): Promise<Object>;
+}
 
 export interface MoviesResponse {
     data: Movie[];
