@@ -22,7 +22,7 @@ const MovieList: FC = () => {
     <>
       <MovieCounter> {movieList.length} movies Found</MovieCounter>
       <MovieListContainer>{ movieList.map((movie: Movie) => (
-        <Card key={movie.title} name={movie.title} year={movie.release_date} categories={movie.genres.join(", ")} imageURL={movie.poster_path} />
+        <Card movieId={movie.id} key={movie.title} name={movie.title} year={movie.release_date} categories={movie.genres.join(", ")} imageURL={movie.poster_path} />
       ))}</MovieListContainer>
     </>
   );

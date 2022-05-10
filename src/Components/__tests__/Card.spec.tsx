@@ -5,7 +5,7 @@ import Card from '../Card/Card';
 
 describe('<Card />', () => {
   it('sample test for card - dummy ', () => {
-    const card = shallow(<Card imageURL="" name="" year="" categories="" />);
+    const card = shallow(<Card imageURL="" name="" year="" categories="" movieId={1} />);
 
     expect(card).toBe(card);
   });
