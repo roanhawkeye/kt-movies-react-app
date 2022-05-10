@@ -6,7 +6,7 @@ import { SC } from '../../theme/styled-component';
 import { boxSystem } from '../../theme/mixin';
 
 interface HeaderContainterProps {
-  imageBackgroundUrl: string;
+  imageBackgroundUrl?: string;
 }
 
 export const HeaderContainer = styled.div<HeaderContainterProps>`

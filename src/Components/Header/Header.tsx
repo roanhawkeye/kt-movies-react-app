@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { MovieDetailStatus, selectStatus } from '../../store/movie/details';
 import { AddMoviesPopup } from '../AddMoviesPopup/AddMoviesPopup';
 import { Box } from '../Box/Box';
 import { CustomButton } from '../Button/Button.styled';
+import MovieDetail from '../MovieDetail/MovieDetail';
 
 import {
   HeaderContainer,
@@ -19,21 +22,27 @@ import {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const movieDetailStatus = useSelector(selectStatus);
 
   return (
     <>
-      <HeaderContainer imageBackgroundUrl="/public/images/header_background_1.jpeg">
-        <TopLeftTitle>netflixroulette</TopLeftTitle>
-        <TopRightButton right="6" top="6" onClick={() => setIsOpen(true)}>
-        + add movie
-        </TopRightButton>
-        <AddMoviesPopup show={isOpen} setShow={setIsOpen}/>
-        <Title>find your movie</Title>
-        <SearchInput />
-        <CustomButton left="65" width="12" color="#f65261" top="225">
-          SEARCH
-        </CustomButton>
-      </HeaderContainer>
+      { movieDetailStatus === MovieDetailStatus.NonVisible && 
+        <HeaderContainer imageBackgroundUrl="/public/images/header_background_1.jpeg">
+          <TopLeftTitle>netflixroulette</TopLeftTitle>
+          <TopRightButton right="6" top="6" onClick={() => setIsOpen(true)}>
+          + add movie
+          </TopRightButton>
+          <AddMoviesPopup show={isOpen} setShow={setIsOpen}/>
+          <Title>find your movie</Title>
+          <SearchInput />
+          <CustomButton left="65" width="12" color="#f65261" top="225">
+            SEARCH
+          </CustomButton>
+        </HeaderContainer> }
+      { movieDetailStatus === MovieDetailStatus.Visible && 
+      <HeaderContainer>
+        <MovieDetail />
+      </HeaderContainer> } 
       <SubHeader>
         <Box>
           <Navigation>

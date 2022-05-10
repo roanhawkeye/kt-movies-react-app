@@ -13,6 +13,9 @@ import {
   Poster,
 } from './Card.styled';
 import { HamburgerMenu } from '../HamburgerMenu/HamburgerMenu';
+import { useDispatch } from 'react-redux';
+import { Dispatch } from 'StoreTypes';
+import { getMovieDetails, MovieDetailStatus, setStatus } from '../../store/movie/details';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
@@ -21,20 +24,30 @@ interface MovieData {
   name: string;
   year: string;
   categories: string;
+  movieId?: number;
 }
 
 const Card: FC<MovieData> = (props: MovieData) => {
   const [isHovering, setIsHovering] = useState(false);
+  const dispatch: Dispatch = useDispatch();
+
+  const handleOnClick = (movieId: number) =>{
+    dispatch(getMovieDetails(movieId));
+    dispatch(setStatus(MovieDetailStatus.Visible));
+  };
 
   return (
-    <CardContainer onMouseOver={() => setIsHovering(true)} onMouseOut={() => setIsHovering(false)}>
+    <CardContainer 
+      onMouseOver={() => setIsHovering(true)} 
+      onMouseOut={() => setIsHovering(false)} 
+      onClick={() => handleOnClick(props.movieId || 0)}>
       <HamburgerMenu show={isHovering} />
       <ImageContainer>
         <Poster src={props.imageURL} />
       </ImageContainer>
       <MovieDataContainer>
         <MovieName>{props.name}</MovieName>
-        <MovieYear>{props.year}</MovieYear>
+        <MovieYear>{props.year.substring(0, 4)}</MovieYear>
       </MovieDataContainer>
       <MovieCategories>{props.categories}</MovieCategories>
     </CardContainer>

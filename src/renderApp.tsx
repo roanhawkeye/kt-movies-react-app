@@ -1,5 +1,7 @@
+import { Store } from 'StoreTypes';
 import React, { FC } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 
 import MovieList from './Components/MovieList/MovieList';
 import Header from './Components/Header/Header';
@@ -7,20 +9,29 @@ import Header from './Components/Header/Header';
 import styled from 'styled-components';
 import { Footer } from './Components/Footer/Footer';
 
+
+
+
 const AppContainer = styled.div`
-  background-color: #424242; ;
+  background-color: #424242;
 `;
 
-export const renderApp = () => {
-  const App: FC = () => (
-    <AppContainer>
-      <Header />
-      <MovieList />
-      <Footer>netflixroulette</Footer>
-    </AppContainer>
-  );
+export const renderApp = (store: Store) => {
+
+  const App: FC = () => {
+    return (
+      <Provider store={store} >
+        <AppContainer>
+          <Header />
+          <MovieList />
+          <Footer>netflixroulette</Footer>
+        </AppContainer>
+      </Provider>
+    );
+  };
+  
 
   const target = document.getElementById('react-root');
-
-  ReactDOM.render(<App />, target);
+  const root = createRoot(target!);
+  root.render(<App />);
 };
