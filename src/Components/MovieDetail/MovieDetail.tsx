@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Dispatch } from 'StoreTypes';
@@ -7,9 +7,9 @@ import { ImageContainer, Poster } from '../Card/Card.styled';
 import { TopLeftTitle } from '../Header/Header.styled';
 import { DetailsContainer, DetailsLeftSection, DetailsRightSection } from './MovieDetail.styled';
 
-const MovieDetail = () => {
+const MovieDetail: FC = () => {
   const movieDetails = useSelector(selectMovie);
-  const dispatch: Dispatch = useDispatch;
+  const dispatch: Dispatch = useDispatch();
 
   const closeDetails = () => {
         console.log('closing details!!');
