@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import { setAuthStatus } from './actions';
 import { AuthStatus } from './typings';
-import { userReceived } from '../user/actions';
+import { userReceived } from '../user';
 
 const initialState = {
     status: AuthStatus.Pending,
