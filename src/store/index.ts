@@ -1,4 +1,5 @@
 import { combineReducers, Middleware } from '@reduxjs/toolkit';
+import { authReudcer } from './auth';
 import { createStore } from './createStore';
 import { movieDetailsReducer } from './movie/details/reducer';
 
@@ -10,6 +11,7 @@ export const rootReducer = combineReducers({
         list: movieListReducer,
         details: movieDetailsReducer,
     }),
+    auth: authReudcer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
