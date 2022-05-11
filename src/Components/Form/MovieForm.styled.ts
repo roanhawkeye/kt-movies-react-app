@@ -24,6 +24,7 @@ export const FormInput = styled.input`
   opacity: 0.8;
   border-radius: 4px;
   height: 30px;
+  color: #FFFFFF;
 `;
 
 export const FormStyled = styled.form`

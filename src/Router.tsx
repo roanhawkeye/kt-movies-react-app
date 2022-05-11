@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { Switch, Redirect, Router } from 'react-router-dom';
 
@@ -9,7 +9,10 @@ import { LogInRoute, PrivateRoute } from './Routes';
 import { useSelector } from 'react-redux';
 import { selectAuthStatus } from './store/auth';
 import { appRoutes } from './appRoutes';
-import { Auth } from './Auth';
+import { Auth } from './Components/Auth';
+import { Dispatch } from 'StoreTypes';
+import { useDispatch } from 'react-redux';
+import { getUser } from './store/user';
 
 const AppContainer = styled.div`
   background-color: #424242;
@@ -18,6 +21,17 @@ const AppContainer = styled.div`
 
 export const AppRouter: FC = () => {
   const status = useSelector(selectAuthStatus);
+  const dispatch: Dispatch = useDispatch();
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+
+    if (isAuthenticated === 'true') {
+      dispatch(getUser());
+    }
+
+  }, []);
+
 
   return (
     <Router history={history}>
