@@ -1,6 +1,7 @@
 import { combineReducers, Middleware } from '@reduxjs/toolkit';
 import { authReudcer } from './auth';
 import { createStore } from './createStore';
+import { genreReducer } from './genre';
 import { movieDetailsReducer } from './movie/details/reducer';
 
 import { movieListReducer } from './movie/list';
@@ -16,6 +17,7 @@ export const rootReducer = combineReducers({
     auth: authReudcer,
     user: userReducer,
     search: searchReducer,
+    genre: genreReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

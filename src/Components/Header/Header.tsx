@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Dispatch } from 'StoreTypes';
+import { selectGenre } from '../../store/genre';
 import { MovieDetailStatus, selectStatus } from '../../store/movie/details';
 import { selectSearchTerm, setSearchTerm } from '../../store/search';
 import { AddMoviesPopup } from '../AddMoviesPopup/AddMoviesPopup';
@@ -24,10 +25,12 @@ import {
 } from './Header.styled';
 
 const Header = () => {
+  const dispatch: Dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const movieDetailStatus = useSelector(selectStatus);
   const searchTerm = useSelector(selectSearchTerm);
-  const dispatch: Dispatch = useDispatch();
+  const selectedGenre = useSelector(selectGenre);
+  
 
   const handleSearchOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm({ term: event.target.value }));
@@ -55,11 +58,11 @@ const Header = () => {
       <SubHeader>
         <Box>
           <Navigation>
-            <NavigationOption>ALL</NavigationOption>
-            <NavigationOption>DOCMENTARY</NavigationOption>
-            <NavigationOption>COMEDY</NavigationOption>
-            <NavigationOption>HORROR</NavigationOption>
-            <NavigationOption>CRIME</NavigationOption>
+            <NavigationOption title='all' selected={selectedGenre} >ALL</NavigationOption>
+            <NavigationOption title='documentary' selected={selectedGenre}>DOCMENTARY</NavigationOption>
+            <NavigationOption title='comedy' selected={selectedGenre}>COMEDY</NavigationOption>
+            <NavigationOption title='horror' selected={selectedGenre}>HORROR</NavigationOption>
+            <NavigationOption title='crime' selected={selectedGenre}>CRIME</NavigationOption>
           </Navigation>
         </Box>
         <Box>

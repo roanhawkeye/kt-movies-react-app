@@ -4,10 +4,8 @@ import { InjectedBoxProps } from '../../theme/mixin/box/box';
 import { SC } from '../../theme/styled-component';
 
 import { boxSystem } from '../../theme/mixin';
+import { HeaderContainterProps, NavigationOptionProps, TopRighButtonProps } from './typings';
 
-interface HeaderContainterProps {
-  imageBackgroundUrl?: string;
-}
 
 export const HeaderContainer = styled.div<HeaderContainterProps>`
   height: 396px;
@@ -61,11 +59,6 @@ export const Title = styled.div`
 `;
 
 type ButtonBoxProps = InjectedBoxProps<ButtonHTMLAttributes<any>>;
-
-interface TopRighButtonProps {
-  right: string;
-  top: string;
-}
 
 export const TopRightButton: SC<ButtonBoxProps> = styled.div<TopRighButtonProps>`
   position: fixed;
@@ -126,9 +119,11 @@ export const Navigation = styled.ul`
   color: #ffffff;
 `;
 
-export const NavigationOption = styled.li`
+export const NavigationOption = styled.li<NavigationOptionProps>`
   display: inline;
   padding: 10px 20px;
+
+  background-color: ${(props) => props.title === props.selected ? '#f65261' : 'unset'};
 
   &:hover {
     background-color: #f65261;

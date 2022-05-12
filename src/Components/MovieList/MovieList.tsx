@@ -6,6 +6,7 @@ import { Dispatch } from 'StoreTypes';
 
 import { Movie } from '../../domain';
 import { useQuery } from '../../hooks';
+import { setGenre } from '../../store/genre';
 import { getMovies, selectMovies } from '../../store/movie/list';
 import { selectSearchTerm, setSearchTerm } from '../../store/search';
 import Card from '../Card/Card';
@@ -21,12 +22,15 @@ const MovieList: FC = () => {
   const { searchQuery } = useParams<MoviePathParam>();
   const searchTerm = useSelector(selectSearchTerm);
 
+  const selectedGenre = query.get('genre') || '';
+
   useEffect(() => {
     dispatch(getMovies({
       search: searchQuery,
-      genre: query.get('genre') || ''
+      genre: selectedGenre
     }));
     dispatch(setSearchTerm({ term: searchQuery}));
+    dispatch(setGenre(selectedGenre));
   }, []);
 
   useEffect(() => {
