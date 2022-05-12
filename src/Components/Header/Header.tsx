@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { Dispatch } from 'StoreTypes';
+import { getMovies } from '../../store/movie';
 import { MovieDetailStatus, selectStatus } from '../../store/movie/details';
+import { selectSearchTerm, setSearchTerm } from '../../store/search';
 import { AddMoviesPopup } from '../AddMoviesPopup/AddMoviesPopup';
 import { Box } from '../Box/Box';
 import { CustomButton } from '../Button/Button.styled';
@@ -23,6 +27,13 @@ import {
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const movieDetailStatus = useSelector(selectStatus);
+  const searchTerm = useSelector(selectSearchTerm);
+  const dispatch: Dispatch = useDispatch();
+
+  const handleSearchOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchTerm({ term: event.target.value }));
+    dispatch(getMovies({ search: searchTerm }));
+  };
 
   return (
     <>
@@ -34,7 +45,7 @@ const Header = () => {
           </TopRightButton>
           <AddMoviesPopup show={isOpen} setShow={setIsOpen}/>
           <Title>find your movie</Title>
-          <SearchInput />
+          <SearchInput value={searchTerm} onChange={handleSearchOnChange}/>
           <CustomButton left="65" width="12" color="#f65261" top="225">
             SEARCH
           </CustomButton>

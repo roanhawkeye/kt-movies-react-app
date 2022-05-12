@@ -5,11 +5,11 @@ import { GetMovieParams, MoviesResponse } from './typings';
 
 export function createMovieService(http: HttpService) {
   const getMovies = async (params: GetMovieParams) => {
-    const { search } = params;
+    const { search, genre } = params;
 
     const pathname = '/movies';
 
-    const query = urlUtils.toQuery({ search, searchBy: 'title' });
+    const query = urlUtils.toQuery({ search, searchBy: 'title', filter: genre });
 
     const { data } = await http.get<MoviesResponse>(pathname.concat(query));
 

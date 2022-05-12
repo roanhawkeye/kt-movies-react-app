@@ -4,6 +4,7 @@ import { createStore } from './createStore';
 import { movieDetailsReducer } from './movie/details/reducer';
 
 import { movieListReducer } from './movie/list';
+import { searchReducer } from './search';
 import { userReducer } from './user';
 
 
@@ -14,6 +15,7 @@ export const rootReducer = combineReducers({
     }),
     auth: authReudcer,
     user: userReducer,
+    search: searchReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

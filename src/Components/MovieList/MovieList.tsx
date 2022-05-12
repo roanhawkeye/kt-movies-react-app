@@ -5,7 +5,9 @@ import { useParams } from 'react-router-dom';
 import { Dispatch } from 'StoreTypes';
 
 import { Movie } from '../../domain';
+import { useQuery } from '../../hooks';
 import { getMovies, selectMovies } from '../../store/movie/list';
+import { selectSearchTerm, setSearchTerm } from '../../store/search';
 import Card from '../Card/Card';
 
 import { MovieListContainer, MovieCounter } from './MovieList.styled';
@@ -15,10 +17,15 @@ import { MoviePathParam } from './typings';
 const MovieList: FC = () => {
   const dispatch: Dispatch = useDispatch();
   const movieList = useSelector(selectMovies);
+  const query = useQuery();
   const { searchQuery } = useParams<MoviePathParam>();
 
   useEffect(() => {
-    dispatch(getMovies({search: searchQuery}));
+    dispatch(getMovies({
+      search: searchQuery,
+      genre: query.get('genre') || ''
+    }));
+    dispatch(setSearchTerm({ term: searchQuery}));
   }, []);
 
   return (
