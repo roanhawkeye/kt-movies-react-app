@@ -2,7 +2,6 @@ import React, { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Dispatch } from 'StoreTypes';
-import { getMovies } from '../../store/movie';
 import { MovieDetailStatus, selectStatus } from '../../store/movie/details';
 import { selectSearchTerm, setSearchTerm } from '../../store/search';
 import { AddMoviesPopup } from '../AddMoviesPopup/AddMoviesPopup';
@@ -32,7 +31,6 @@ const Header = () => {
 
   const handleSearchOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm({ term: event.target.value }));
-    dispatch(getMovies({ search: searchTerm }));
   };
 
   return (

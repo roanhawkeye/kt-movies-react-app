@@ -19,6 +19,7 @@ const MovieList: FC = () => {
   const movieList = useSelector(selectMovies);
   const query = useQuery();
   const { searchQuery } = useParams<MoviePathParam>();
+  const searchTerm = useSelector(selectSearchTerm);
 
   useEffect(() => {
     dispatch(getMovies({
@@ -27,6 +28,13 @@ const MovieList: FC = () => {
     }));
     dispatch(setSearchTerm({ term: searchQuery}));
   }, []);
+
+  useEffect(() => {
+    dispatch(getMovies({
+      search: searchTerm,
+      genre: query.get('genre') || ''
+    }));
+  }, [searchTerm]);
 
   return (
     <>
