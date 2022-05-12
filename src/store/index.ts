@@ -6,6 +6,7 @@ import { movieDetailsReducer } from './movie/details/reducer';
 
 import { movieListReducer } from './movie/list';
 import { searchReducer } from './search';
+import { sortReducer } from './sort';
 import { userReducer } from './user';
 
 
@@ -18,6 +19,7 @@ export const rootReducer = combineReducers({
     user: userReducer,
     search: searchReducer,
     genre: genreReducer,
+    sort: sortReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

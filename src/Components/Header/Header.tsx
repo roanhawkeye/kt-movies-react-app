@@ -5,6 +5,7 @@ import { Dispatch } from 'StoreTypes';
 import { selectGenre } from '../../store/genre';
 import { MovieDetailStatus, selectStatus } from '../../store/movie/details';
 import { selectSearchTerm, setSearchTerm } from '../../store/search';
+import { selectSortedTerm } from '../../store/sort';
 import { AddMoviesPopup } from '../AddMoviesPopup/AddMoviesPopup';
 import { Box } from '../Box/Box';
 import { CustomButton } from '../Button/Button.styled';
@@ -30,11 +31,14 @@ const Header = () => {
   const movieDetailStatus = useSelector(selectStatus);
   const searchTerm = useSelector(selectSearchTerm);
   const selectedGenre = useSelector(selectGenre);
+  const selectedSortedTerm = useSelector(selectSortedTerm);
   
 
   const handleSearchOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm({ term: event.target.value }));
   };
+
+
 
   return (
     <>
@@ -67,11 +71,10 @@ const Header = () => {
         </Box>
         <Box>
           <DropdownLabel htmlFor="sorting">SORT BY </DropdownLabel>
-          <SelectBox name="sorting">
-            <OptionBox value="release">RELEASE DATE</OptionBox>
-            <OptionBox value="saab">Saab</OptionBox>
-            <OptionBox value="mercedes">Mercedes</OptionBox>
-            <OptionBox value="audi">Audi</OptionBox>
+          <SelectBox name="sorting" value={selectedSortedTerm}>
+            <OptionBox value="">SELECT SORT BY</OptionBox>
+            <OptionBox value="release_date">RELEASE DATE</OptionBox>
+            <OptionBox value="name">NAME</OptionBox>
           </SelectBox>
         </Box>
       </SubHeader>

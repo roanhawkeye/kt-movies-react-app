@@ -6,9 +6,10 @@ import { Dispatch } from 'StoreTypes';
 
 import { Movie } from '../../domain';
 import { useQuery } from '../../hooks';
-import { setGenre } from '../../store/genre';
+import { selectGenre, setGenre } from '../../store/genre';
 import { getMovies, selectMovies } from '../../store/movie/list';
 import { selectSearchTerm, setSearchTerm } from '../../store/search';
+import { selectSortedTerm, setSortBy, SortByOptions } from '../../store/sort';
 import Card from '../Card/Card';
 
 import { MovieListContainer, MovieCounter } from './MovieList.styled';
@@ -21,22 +22,28 @@ const MovieList: FC = () => {
   const query = useQuery();
   const { searchQuery } = useParams<MoviePathParam>();
   const searchTerm = useSelector(selectSearchTerm);
+  const selectedGenre = useSelector(selectGenre);
+  const selectedSortBy = useSelector(selectSortedTerm);
 
-  const selectedGenre = query.get('genre') || '';
+  const paramGenre = query.get('genre') || '';
+  const paramSortBy = query.get('sortBy') || '';
 
   useEffect(() => {
     dispatch(getMovies({
       search: searchQuery,
-      genre: selectedGenre
+      genre: paramGenre,
+      sortBy: paramSortBy
     }));
     dispatch(setSearchTerm({ term: searchQuery}));
-    dispatch(setGenre(selectedGenre));
+    dispatch(setGenre(paramGenre));
+    dispatch(setSortBy(paramSortBy));
   }, []);
 
   useEffect(() => {
     dispatch(getMovies({
       search: searchTerm,
-      genre: query.get('genre') || ''
+      genre: selectedGenre,
+      sortBy: selectedSortBy
     }));
   }, [searchTerm]);
 

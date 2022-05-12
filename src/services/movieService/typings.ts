@@ -23,4 +23,5 @@ export interface MoviesResult {
 export interface GetMovieParams {
     search: string;
     genre?: string;
+    sortBy?: string;
 }
