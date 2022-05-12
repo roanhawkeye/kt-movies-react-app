@@ -7,6 +7,7 @@ export const appRoutes = {
     login: urlUtils.join(basename, '/login'),
     logout: urlUtils.join(basename, '/logout'),
     search: urlUtils.join(basename, '/search'),
+    searchWithParams: urlUtils.join(basename, '/search/:searchQuery?'),
 };
 
 export const redirectRoutes = [

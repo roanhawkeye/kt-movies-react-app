@@ -3,8 +3,8 @@ import { HttpService } from '../httpService';
 import { MoviesResponse } from './typings';
 
 export function createMovieService(http: HttpService) {
-  const getMovies = async () => {
-    const { data } = await http.get<MoviesResponse>('/movies');
+  const getMovies = async (searchQuery: string) => {
+    const { data } = await http.get<MoviesResponse>(`/movies?search=${searchQuery ? searchQuery : ''}&searchBy=title`);
 
     return {
       movies: data.data,

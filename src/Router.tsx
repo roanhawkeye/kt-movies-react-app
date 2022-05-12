@@ -7,7 +7,7 @@ import { history } from './history';
 import { Home } from './screens/home';
 import { LogInRoute, PrivateRoute } from './Routes';
 import { useSelector } from 'react-redux';
-import { selectAuthStatus } from './store/auth';
+import { AuthStatus, selectAuthStatus } from './store/auth';
 import { appRoutes } from './appRoutes';
 import { Auth } from './Components/Auth';
 import { Dispatch } from 'StoreTypes';
@@ -20,16 +20,16 @@ const AppContainer = styled.div`
 
 
 export const AppRouter: FC = () => {
-  const status = useSelector(selectAuthStatus);
   const dispatch: Dispatch = useDispatch();
+  
+  const isAuthenticated = localStorage.getItem('isAuthenticated') || 'false';
+  /* eslint-disable-next-line react-hooks/rules-of-hooks */
+  const status = isAuthenticated === 'true' ? AuthStatus.Success : useSelector(selectAuthStatus);
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-
-    if (isAuthenticated === 'true') {
+    if (status === AuthStatus.Success) {
       dispatch(getUser());
     }
-
   }, []);
 
 
@@ -37,11 +37,11 @@ export const AppRouter: FC = () => {
     <Router history={history}>
       <AppContainer>
         <Switch>
-          <LogInRoute status={status} path={appRoutes.login} component={Auth} />
-          <PrivateRoute status={status} path={appRoutes.search} exact component={Home} />
-          <PrivateRoute status={status} path={appRoutes.root}>
+          <LogInRoute status={status} path={appRoutes.login} exact component={Auth} />
+          <PrivateRoute status={status} path={appRoutes.root} exact>
             <Redirect to={appRoutes.search} />
           </PrivateRoute>
+          <PrivateRoute status={status} path={appRoutes.searchWithParams} component={Home} />
         </Switch>
       </AppContainer>
     </Router>
