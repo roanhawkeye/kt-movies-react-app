@@ -1,10 +1,17 @@
 import { Movie, MovieBase, MovieId } from '../../domain';
+import { urlUtils } from '../../utils/urlUtils';
 import { HttpService } from '../httpService';
-import { MoviesResponse } from './typings';
+import { GetMovieParams, MoviesResponse } from './typings';
 
 export function createMovieService(http: HttpService) {
-  const getMovies = async (searchQuery: string) => {
-    const { data } = await http.get<MoviesResponse>(`/movies?search=${searchQuery ? searchQuery : ''}&searchBy=title`);
+  const getMovies = async (params: GetMovieParams) => {
+    const { search } = params;
+
+    const pathname = '/movies';
+
+    const query = urlUtils.toQuery({ search, searchBy: 'title' });
+
+    const { data } = await http.get<MoviesResponse>(pathname.concat(query));
 
     return {
       movies: data.data,

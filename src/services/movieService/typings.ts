@@ -1,7 +1,7 @@
 import { Movie, MovieBase, MovieId } from '../../domain';
 
 export interface MovieService {
-    getMovies( searchQuery: string ): Promise<MoviesResult>;
+    getMovies( params: GetMovieParams ): Promise<MoviesResult>;
     getMovie( movieId: MovieId ): Promise<Movie>;
     saveMovie( payload: MovieBase ): Promise<Movie>;
     editMovie( payload: Movie ): Promise<Movie>;
@@ -20,6 +20,6 @@ export interface MoviesResult {
     total: number;
 }
 
-export interface MoviePathParams {
-    searchQuery: string;
+export interface GetMovieParams {
+    search: string;
 }

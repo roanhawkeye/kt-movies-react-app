@@ -5,20 +5,20 @@ import { useParams } from 'react-router-dom';
 import { Dispatch } from 'StoreTypes';
 
 import { Movie } from '../../domain';
-import { MoviePathParams } from '../../services/movieService';
 import { getMovies, selectMovies } from '../../store/movie/list';
 import Card from '../Card/Card';
 
 import { MovieListContainer, MovieCounter } from './MovieList.styled';
+import { MoviePathParam } from './typings';
 
 
 const MovieList: FC = () => {
   const dispatch: Dispatch = useDispatch();
   const movieList = useSelector(selectMovies);
-  const { searchQuery } = useParams<MoviePathParams>();
+  const { searchQuery } = useParams<MoviePathParam>();
 
   useEffect(() => {
-    dispatch(getMovies(searchQuery));
+    dispatch(getMovies({search: searchQuery}));
   }, []);
 
   return (

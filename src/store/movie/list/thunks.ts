@@ -1,11 +1,12 @@
 import { Thunk } from 'StoreTypes';
+import { GetMovieParams } from '../../../services/movieService';
 
 import { movieListReceived } from './actions';
 
-export const getMovies = (searchQuery: string): Thunk => async (dispatch, _getState, { services }) => {
+export const getMovies = (params: GetMovieParams): Thunk => async (dispatch, _getState, { services }) => {
     
   try {
-    const result = await services.movie.getMovies(searchQuery);
+    const result = await services.movie.getMovies(params);
 
     if (result) {
             dispatch(movieListReceived(result));
