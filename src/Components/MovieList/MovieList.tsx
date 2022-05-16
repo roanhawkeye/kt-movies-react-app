@@ -7,7 +7,7 @@ import { Dispatch } from 'StoreTypes';
 import { Movie } from '../../domain';
 import { useQuery } from '../../hooks';
 import { selectGenre, setGenre } from '../../store/genre';
-import { getMovies, selectMovies } from '../../store/movie/list';
+import { getMovies, selectMovies, getGenres, getSortByOptions } from '../../store/movie';
 import { selectSearchTerm, setSearchTerm } from '../../store/search';
 import { selectSortedTerm, setSortBy, SortByOptions } from '../../store/sort';
 import Card from '../Card/Card';
@@ -34,6 +34,8 @@ const MovieList: FC = () => {
       genre: paramGenre,
       sortBy: paramSortBy
     }));
+    dispatch(getGenres());
+    dispatch(getSortByOptions());
     dispatch(setSearchTerm({ term: searchQuery}));
     dispatch(setGenre(paramGenre));
     dispatch(setSortBy(paramSortBy));
@@ -45,7 +47,7 @@ const MovieList: FC = () => {
       genre: selectedGenre,
       sortBy: selectedSortBy
     }));
-  }, [searchTerm]);
+  }, [searchTerm, selectedGenre, selectedSortBy]);
 
   return (
     <>

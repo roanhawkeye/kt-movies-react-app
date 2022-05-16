@@ -6,6 +6,8 @@ export interface MovieService {
     saveMovie( payload: MovieBase ): Promise<Movie>;
     editMovie( payload: Movie ): Promise<Movie>;
     deleteMovie( movieId: MovieId): Promise<Object>;
+    getGenres(): Promise<GenreResult>;
+    getSortOptions(): Promise<SortOptionsResult>;
 }
 
 export interface MoviesResponse {
@@ -24,4 +26,12 @@ export interface GetMovieParams {
     search: string;
     genre?: string;
     sortBy?: string;
+}
+
+export interface GenreResult {
+    genres: string[];
+}
+
+export interface SortOptionsResult {
+    options: string[];
 }

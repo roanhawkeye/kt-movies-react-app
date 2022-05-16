@@ -4,8 +4,7 @@ import { HttpService } from '../httpService';
 import { GetMovieParams, MoviesResponse } from './typings';
 
 export function createMovieService(http: HttpService) {
-  const getMovies = async (params: GetMovieParams) => {
-    const { search, genre, sortBy } = params;
+  const getMovies = async ({ search, genre, sortBy }: GetMovieParams) => {
 
     const pathname = '/movies';
 
@@ -49,6 +48,26 @@ export function createMovieService(http: HttpService) {
     return response;
   };
 
+  const getGenres = async () => {
+    const { data } = await new Promise((resolve) => {
+      resolve({ data: {
+          genres: ['all', 'documentary', 'comedy', 'horror', 'crime'],
+      } });
+    });
+
+    return data;
+  };
+
+  const getSortOptions = async () => {
+    const { data } = await new Promise((resolve) => {
+      resolve({ data: {
+        options: ['release_date', 'name'],
+      } });
+    });
+
+    return data;
+  };
+
 
   return {
         getMovies,
@@ -56,5 +75,7 @@ export function createMovieService(http: HttpService) {
         saveMovie,
         editMovie,
         deleteMovie,
+        getGenres,
+        getSortOptions,
     };
 }
