@@ -47,6 +47,9 @@ module.exports = {
     new HtmlPlugin({
       template: path.resolve(__dirname, 'index.template.html'),
     }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(env),
+    }),
     new CopyWebpackPlugin({ patterns: [{ from: path.resolve(__dirname, 'public'), to: 'public' }] }),
   ],
 
@@ -55,5 +58,6 @@ module.exports = {
   devServer: {
     port: 3000,
     hot: true,
+    historyApiFallback: true,
   },
 };
