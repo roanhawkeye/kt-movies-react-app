@@ -26,6 +26,7 @@ import {
   OptionBox,
   TopRightButton,
 } from './Header.styled';
+import { GenreOption, SortByOption } from './typings';
 
 const Header = () => {
   const dispatch: Dispatch = useDispatch();
@@ -41,6 +42,33 @@ const Header = () => {
   const handleSearchOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm({ term: event.target.value }));
   };
+
+  const handleGenresOnClick = (event: React.MouseEvent<HTMLUListElement>) => {
+    let target = event.target as HTMLUListElement;
+    dispatch(setGenre(target.title));
+    history.push({
+      search: `?genre=${target.title}`,
+    });
+  };
+
+  const preparedSortByOptions: SortByOption[] = sortByOptions.map( (option): SortByOption  => {
+    return {
+        'id' : option,
+        'name': option,
+        'diplayName': option.toUpperCase().replace('_', ' '),
+      };
+  });
+  
+  preparedSortByOptions.unshift({ id: 'default', name: '', diplayName: 'SELECT SORT BY' } as SortByOption);
+
+  const preparedGenreOptions: GenreOption[] = genresOptions.map((genre): GenreOption => {
+    return {
+      id: genre,
+      title: genre,
+      displayName: genre.toUpperCase(),
+    };
+  });
+
 
   return (
     <>
@@ -63,18 +91,12 @@ const Header = () => {
       </HeaderContainer> } 
       <SubHeader>
         <Box>
-          <Navigation>
-            {genresOptions.map((option) => {
+          <Navigation onClick={handleGenresOnClick}>
+            {preparedGenreOptions.map((option) => {
               return <NavigationOption 
-                key={option} title={option} 
-                selected={selectedGenre} 
-                onClick={() => {
-                  dispatch(setGenre(option));
-                  history.push({
-                    search: `?genre=${option}`,
-                  });
-                }}>
-                {option.toUpperCase()}
+                key={option.id} title={option.title} 
+                selected={selectedGenre}>
+                {option.displayName}
               </NavigationOption>;
             })}
           </Navigation>
@@ -87,12 +109,11 @@ const Header = () => {
               search: `?sortBy=${e.target.selectedOptions[0].value}`,
             });
           }}>
-            <OptionBox value="">SELECT SORT BY</OptionBox>
-            {sortByOptions.map((option) => {
+            {preparedSortByOptions.map((option) => {
               return <OptionBox 
-                key={option}
-                value={option}
-              >{option.toUpperCase().replace('_', ' ')}</OptionBox>;
+                key={option.id}
+                value={option.name}
+              >{option.diplayName}</OptionBox>;
             })}
           </SelectBox>
         </Box>

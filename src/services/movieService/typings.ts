@@ -35,3 +35,9 @@ export interface GenreResult {
 export interface SortOptionsResult {
     options: string[];
 }
+
+export interface SortByOption {
+    id: string;
+    name: string;
+    diplayName: string;
+}

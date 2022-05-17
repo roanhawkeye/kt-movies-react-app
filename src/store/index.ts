@@ -14,6 +14,7 @@ export const rootReducer = combineReducers({
     movie: combineReducers({
         list: movieListReducer,
         details: movieDetailsReducer,
+        
     }),
     auth: authReudcer,
     user: userReducer,
