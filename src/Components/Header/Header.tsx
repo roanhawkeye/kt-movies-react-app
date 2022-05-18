@@ -37,7 +37,6 @@ const Header = () => {
   const selectedSortedTerm = useSelector(selectSortedTerm);
   const genresOptions = useSelector(selectGenresOptions);
   const sortByOptions = useSelector(selectSortByOptions);
-  
 
   const handleSearchOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm({ term: event.target.value }));
@@ -51,9 +50,10 @@ const Header = () => {
     });
   };
 
-  const preparedSortByOptions: SortByOption[] = sortByOptions.map( (option): SortByOption  => {
+
+  const preparedSortByOptions = sortByOptions.map( (option, index): SortByOption  => {
     return {
-        'id' : option,
+        'id' : `option_${index}`,
         'name': option,
         'diplayName': option.toUpperCase().replace('_', ' '),
       };
@@ -61,9 +61,9 @@ const Header = () => {
   
   preparedSortByOptions.unshift({ id: 'default', name: '', diplayName: 'SELECT SORT BY' } as SortByOption);
 
-  const preparedGenreOptions: GenreOption[] = genresOptions.map((genre): GenreOption => {
+  const preparedGenreOptions =  genresOptions.map((genre, index): GenreOption => {
     return {
-      id: genre,
+      id: `genre_${index}`,
       title: genre,
       displayName: genre.toUpperCase(),
     };
@@ -104,7 +104,7 @@ const Header = () => {
         <Box>
           <DropdownLabel htmlFor="sorting">SORT BY </DropdownLabel>
           <SelectBox name="sorting" value={selectedSortedTerm} onChange={(e) => {
-            dispatch(setSortBy(e.target.selectedOptions[0].value)); 
+            dispatch(setSortBy(e.target.selectedOptions[0].value));
             history.push({
               search: `?sortBy=${e.target.selectedOptions[0].value}`,
             });
